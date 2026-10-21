@@ -1,3 +1,4 @@
+# check=skip=SecretsUsedInArgOrEnv
 # arista-allinone: containerlab + Arista AVD (pyavd + arista.avd + full Ansible) + ANTA
 # Multi-arch: linux/amd64 and linux/arm64 (Apple Silicon).
 FROM python:3.12-slim-bookworm

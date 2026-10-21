@@ -4,6 +4,8 @@ IMAGE    ?= arista-allinone
 TAG      ?= latest
 LAB_DIR  ?= $(CURDIR)/work
 ENV_FILE ?= $(CURDIR)/.env
+# Docker needs an absolute container path: expand a leading ~ and resolve relative paths
+LAB_ABS   = $(abspath $(patsubst ~%,$(HOME)%,$(LAB_DIR)))
 
 .PHONY: help
 help: ## Display help message
@@ -19,11 +21,11 @@ image-nocache: ## Rebuild from scratch to pick up new tool releases
 
 .PHONY: shell
 shell: ## Run the container with LAB_DIR mounted at the same path (LAB_DIR=~/lab)
-	@mkdir -p $(LAB_DIR)
+	@mkdir -p "$(LAB_ABS)"
 	docker run -it --rm --name allinone \
 	  --privileged --network host --pid host \
 	  -v /var/run/docker.sock:/var/run/docker.sock \
-	  -v $(LAB_DIR):$(LAB_DIR) -w $(LAB_DIR) \
+	  -v "$(LAB_ABS)":"$(LAB_ABS)" -w "$(LAB_ABS)" \
 	  $(if $(wildcard $(ENV_FILE)),--env-file $(ENV_FILE)) \
 	  $(IMAGE):$(TAG)
 

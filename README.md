@@ -43,7 +43,7 @@ make shell LAB_DIR=~/lab      # kontener z podmontowanym katalogiem labu
 docker run -it --rm --name allinone \
   --privileged --network host --pid host \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  -v ~/lab:~/lab -w ~/lab \
+  -v "$HOME/lab":"$HOME/lab" -w "$HOME/lab" \
   --env-file .env \
   arista-allinone:latest
 ```
