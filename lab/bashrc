@@ -1,0 +1,14 @@
+# arista-allinone shell setup (sourced from /root/.bashrc)
+[ -f /etc/bash_completion ] && . /etc/bash_completion
+alias mk='make -f /opt/allinone/Makefile'
+alias clab=containerlab
+
+if [ -n "$PS1" ] && [ -z "$ALLINONE_BANNER" ]; then
+    export ALLINONE_BANNER=1
+    printf '\033[36marista-allinone\033[0m  containerlab %s | AVD %s | ANTA %s | ansible-core %s\n' \
+        "$(containerlab version 2>/dev/null | awk '/version:/{print $2; exit}')" \
+        "$(pip show pyavd 2>/dev/null | awk '/^Version:/{print $2}')" \
+        "$(pip show anta 2>/dev/null | awk '/^Version:/{print $2}')" \
+        "$(pip show ansible-core 2>/dev/null | awk '/^Version:/{print $2}')"
+    echo "  mk help   - lab targets (start/stop/build/deploy/test/ceos ...)"
+fi

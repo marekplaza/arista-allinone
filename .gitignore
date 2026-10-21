@@ -1,0 +1,19 @@
+# secrets
+.env
+cv-api-token
+cv-onboarding-token
+
+# cEOS images
+*.tar
+*.tar.xz
+*.part
+cEOS*-lab-*
+
+# lab working dir and generated artifacts
+work/
+clab-*/
+*.bak
+*.retry
+*.log
+
+.DS_Store
