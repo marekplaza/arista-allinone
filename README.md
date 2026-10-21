@@ -34,8 +34,10 @@ docker build -t arista-allinone \
 git clone https://github.com/marekplaza/arista-allinone.git && cd arista-allinone
 cp .env.example .env          # uzupełnij ARISTA_TOKEN (i CV_API_TOKEN dla CVaaS)
 make image                    # docker build
-make shell LAB_DIR=~/lab      # kontener z podmontowanym katalogiem labu
+make shell                    # kontener z podmontowanym ~/lab (inny: make shell LAB_DIR=~/inny_lab)
 ```
+
+Domyślny katalog labu to `~/lab`. Zmienisz go jednorazowo przez `LAB_DIR=...` albo na stałe przez `export LAB_DIR=...` w `~/.zshrc`.
 
 `make shell` uruchamia odpowiednik tego polecenia:
 

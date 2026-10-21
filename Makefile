@@ -2,7 +2,7 @@
 # Lab targets live in lab/Makefile and are available in the container as `mk <target>`.
 IMAGE    ?= arista-allinone
 TAG      ?= latest
-LAB_DIR  ?= $(CURDIR)/work
+LAB_DIR  ?= $(HOME)/lab
 ENV_FILE ?= $(CURDIR)/.env
 # Docker needs an absolute container path: expand a leading ~ and resolve relative paths
 LAB_ABS   = $(abspath $(patsubst ~%,$(HOME)%,$(LAB_DIR)))
